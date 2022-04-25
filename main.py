@@ -1,6 +1,7 @@
 from flask import Flask,render_template,url_for,request,jsonify
 from flask_cors import cross_origin
 import pandas as pd
+import os
 import numpy as np
 import datetime
 import pickle
@@ -80,4 +81,5 @@ def predict():
 	return render_template("predictor.html")
 
 if __name__=='__main__':
-	app.run(debug=True)
+	port = int(os.environ.get('PORT', 5000))
+	app.run(host='0.0.0.0', port=port)
