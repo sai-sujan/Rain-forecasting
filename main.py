@@ -18,6 +18,7 @@ def home():
 
 
 @app.route("/api_predict",methods=['POST'])
+@cross_origin()
 def api_predict():
 	List = request.json['list']
 	pred = model.predict(List)
