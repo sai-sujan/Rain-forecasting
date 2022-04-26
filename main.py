@@ -1,7 +1,6 @@
 from flask import Flask,render_template,url_for,request,jsonify
 from flask_cors import cross_origin
 import pandas as pd
-import os
 import numpy as np
 import datetime
 import pickle
@@ -16,6 +15,13 @@ print("Model Loaded")
 @cross_origin()
 def home():
 	return render_template("index.html")
+
+
+@app.route("/api_predict",methods=['POST'])
+def api_predict():
+	List = request.json['list']
+	pred = model.predict(List)
+	return jsonify({'output':pred})
 
 @app.route("/predict",methods=['GET', 'POST'])
 @cross_origin()
