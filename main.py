@@ -16,14 +16,6 @@ print("Model Loaded")
 def home():
 	return render_template("index.html")
 
-
-@app.route("/api_predict",methods=['POST'])
-@cross_origin()
-def api_predict():
-	List = request.json['list']
-	pred = model.predict(List)
-	return jsonify({'output':str(pred)})
-
 @app.route("/predict",methods=['GET', 'POST'])
 @cross_origin()
 def predict():
@@ -86,7 +78,7 @@ def predict():
 		else:
 			return render_template("after_rainy.html")
 	return render_template("predictor.html")
-
+import os
 if __name__=='__main__':
 	port = int(os.environ.get('PORT', 5000))
 	app.run(host='0.0.0.0', port=port)
