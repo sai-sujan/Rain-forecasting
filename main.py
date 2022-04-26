@@ -22,7 +22,7 @@ def home():
 def api_predict():
 	List = request.json['list']
 	pred = model.predict(List)
-	return jsonify({'output':pred})
+	return jsonify({'output':str(pred})
 
 @app.route("/predict",methods=['GET', 'POST'])
 @cross_origin()
